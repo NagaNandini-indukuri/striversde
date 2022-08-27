@@ -1,0 +1,47 @@
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+    int xor1 = arr[0];
+    int i;
+    int x = 0;
+    int y = 0;
+    int setBitNo;
+    for(i = 1 ; i < n ; i++)
+    {
+        xor1 = xor1 ^ arr[i];
+    }
+    for(i = 1; i < n+1 ; i++)
+    {
+        xor1 = xor1 ^ i;
+    }
+    setBitNo = xor1 & ~(xor1 - 1);
+    for(i = 0 ; i< n ; i++)
+    {
+        if(arr[i] & setBitNo)
+        {
+            x = x ^ arr[i];
+        }
+        else{
+            y = y ^ arr[i];
+        }
+    }
+    for(i = 1 ; i < n+1; i++)
+    {
+        if(i & setBitNo)
+        {
+            x = x ^ i;
+        }
+        else
+        {
+            y = y ^ i;
+        }
+    }
+    int xcount = 0;
+    for(int i = 0 ; i < n; i++)
+    {
+        if(arr[i] == x)
+        xcount++;
+    }
+    if(xcount == 0 ) return {x , y};
+    return { y , x};
+	
+}
