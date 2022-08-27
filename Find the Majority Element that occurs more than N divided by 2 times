@@ -1,0 +1,16 @@
+//candidate and voting method
+  int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int c , v=0;
+        for(int i = 0 ; i < n ;i++)
+        {
+            if(v == 0) {
+                c = nums[i];
+                v++;
+            }
+            else if(c == nums[i]) v++;
+            else v--;
+            
+        }
+        return c;
+    }
