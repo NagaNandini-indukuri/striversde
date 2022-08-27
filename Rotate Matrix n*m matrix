@@ -1,0 +1,15 @@
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+   int up = 0, down = n - 1 , left = 0 , right = m - 1;
+    if(down == 0 || right == 0) return;
+    while(left < right and up < down)
+    {
+        int temp = mat[up][up];
+        for(int col = left+1 ; col <= right ; col++) swap(temp, mat[up][col]);
+        for(int row = up+1 ; row <= down ; row++)  swap(temp , mat[row][right]);
+        for(int col = right - 1 ; col >= left ; col--) swap(temp , mat[down][col]);
+        for(int row = down -1 ; row >= up ; row--) swap(temp , mat[row][left]);
+        up++;down--;
+        left++;right--;
+    }
+}
