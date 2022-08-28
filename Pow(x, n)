@@ -1,0 +1,18 @@
+int modularExponentiation(int x, int n, int m) {
+    int nn = n;
+   long long int ans = 1;
+   long long int xx = x;
+    while(nn > 0)
+    {
+        if(nn % 2) {
+            ans = (ans * (xx % m)) % m ;
+            nn = nn - 1;
+        }
+        else{
+            xx =((xx % m) * (xx % m)) % m;
+            nn = nn / 2;
+        }
+    }
+   
+    return (int)ans % m;
+}
