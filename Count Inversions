@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+long long int merge(long long *arr , int l , int mid , int r , vector<int> temp)
+{
+    long long int inv = 0;
+    int i = l;
+    int j = mid ;
+    int k = l;
+    while((i <= mid - 1 )and( j <= r))
+    {
+        if(arr[i] <= arr[j])
+        {
+            temp[k++] = arr[i++];
+        }
+        else
+        {
+            inv += mid - i;
+            temp[k++] = arr[j++];
+        }
+    }
+    while(i <= mid - 1) temp[k++] = arr[i++];
+    while(j <= r) temp[k++] = arr[j++];
+    
+    for(int i = l ; i <= r ; i++) arr[i] = temp[i];
+    return inv;
+}
+long long int mergesort(long long *arr , int l, int r , vector<int> temp)
+{
+    long long int inv = 0;
+    int mid;
+    if(  r > l)
+    {
+        mid = ( l + r ) / 2;
+      inv +=  mergesort(arr , l , mid ,temp);
+      inv +=  mergesort(arr , mid + 1 , r , temp);
+      inv +=  merge(arr , l , mid+1 , r , temp);
+    }
+    return inv;
+}
+long long getInversions(long long *arr, int n){
+    // Write your code here.
+   vector<int> temp(n);
+   return mergesort(arr , 0 , n - 1 , temp);
+}
