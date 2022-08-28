@@ -1,0 +1,13 @@
+bool findTargetInMatrix(vector < vector < int >> & mat, int row, int col, int target) {
+   
+    int l = 0;
+    int h = (row*col) - 1;
+    int mid;
+    while(l <= h){
+        mid = (l + h) / 2;
+        if(mat[mid/col][mid % col] == target) return true;
+        else if(mat[mid/col][mid % col] < target) l = mid + 1;
+        else h = h - 1;
+    }
+    return false;
+}
