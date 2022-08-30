@@ -1,0 +1,22 @@
+   typedef ListNode node;
+   ListNode* removeNthFromEnd(ListNode* head, int n) {
+        node* dummy = new node(-1);
+        dummy -> next = head;
+        node* f = dummy;
+        node* s = dummy;
+        if( head == NULL or n == 0)
+            return head;
+        else{
+            while(n--)
+            {
+                f= f->next;
+            }
+            while(f->next)
+            {
+                f= f->next;
+                s= s->next;
+            }
+            s->next = s->next->next;
+        }
+        return dummy -> next;
+    }
