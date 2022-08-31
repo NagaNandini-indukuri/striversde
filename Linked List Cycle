@@ -1,0 +1,12 @@
+  bool hasCycle(ListNode *head) {
+        node* f = head;
+        node* s = head;
+        if(head == NULL) return false;
+        while(f->next and f->next->next)
+        {
+            f = f->next ->next;
+            s = s->next;
+            if(f == s) return true;
+        }
+        return false;
+    }
