@@ -1,0 +1,39 @@
+typedef LinkedListNode<int> node;
+node* reverse(node* head)
+{
+    node* prev = NULL;
+    node* cur = head;
+    node* n;
+    while(cur)
+    {
+        n = cur ->next;
+        cur->next = prev;
+        
+        prev = cur;
+        cur = n;
+    }
+    return prev;
+}
+bool isPalindrome(LinkedListNode<int> *head) {
+    node* f = head;
+     node* s = head;
+    while(f and f->next)
+    {
+        f= f->next->next;
+        s= s->next;
+    }
+    node* head2 = reverse(s);
+    node* head1 = head;
+    while(head1 and head2)
+    {
+        if(head1 -> data != head2 -> data)  return false;
+        else{
+            head1 = head1->next;
+            head2 = head2->next;
+        }
+      
+    }
+    
+    return true;
+    
+}
