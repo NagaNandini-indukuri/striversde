@@ -1,0 +1,21 @@
+
+Node *firstNode(Node *head)
+{
+	if(head == NULL) return head;
+	//    Write your code here.
+	Node* f= head;
+	Node* s= head;
+	Node* e= head;
+	while(f->next and f){
+		f= f->next->next;
+		s=s->next;
+		if(s==f){
+			while(e !=s){
+				s=s->next;
+				e=e->next;
+			}
+			return s;
+		}
+	}
+	return NULL;
+}
