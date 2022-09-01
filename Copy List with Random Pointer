@@ -1,0 +1,32 @@
+typedef LinkedListNode<int> node;
+LinkedListNode<int> *cloneRandomList(LinkedListNode<int> *head)
+{
+    // Write your code here.
+    node* temp = head;
+     while(temp)
+     {
+         node* front = temp ->next;
+         node* n  = new node(temp -> data);
+         n ->next = temp ->next;
+         temp ->next = n;
+         temp = front;
+     }
+    temp = head;
+    while(temp)
+    {
+        temp -> next -> random = temp -> random;
+        temp = temp -> next -> next;
+    }
+    temp = head;
+    node* dummy = new node(0);
+    node* temp1 = dummy;
+    while(temp)
+    {
+        node* front = temp -> next -> next;
+        dummy ->next = temp ->next;
+        temp -> next = front;
+        temp = front;
+        dummy = dummy -> next;
+    }
+    return temp1 -> next;
+}
